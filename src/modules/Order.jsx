@@ -14,7 +14,7 @@ export const Order = () => {
           <input className="order__input order__input--address" type="text" name="address" placeholder="Адрес" />
 
           <fieldset className="order__payment">
-            <legend className="order__payment-title"> Оплата </legend>
+            <h3 className="order__payment-title"> Оплата </h3>
 
             <label className="order__payment-label">
               <input className="order__radio" type="radio" name="payment"  value="card" /> Картой

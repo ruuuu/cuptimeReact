@@ -317,7 +317,7 @@ input[type='number']{
   
 .cart__items{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  /* в ряде автомат число карточек отобразится, min размер 200px, max 1fr */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  /*  по 200px будет столько карточек скоклько их влезет, max 1fr */
   gap: 20px;
 }
 
@@ -346,6 +346,7 @@ input[type='number']{
 
 .cart__total{
   grid-area: total;
+  margin: 0;
 }
 
 .cart__order-button{
@@ -367,16 +368,19 @@ input[type='number']{
   width: 100%;
 }  
 
-.cart-item_info{
+.cart-item__info{
   padding: 16px;
 }
 
 .cart-item__title{
+  width: 100%;
   margin-bottom: 8px;
   font-weight: 400;
   font-size: 20px;
   color: #1d1c1d;
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cart-item__quantity{
@@ -418,6 +422,7 @@ input[type='number']{
 .cart-item__price{
   font-size: 20px;
 }
+
 
 .order{
   padding: 50px 0 100px;
@@ -463,14 +468,25 @@ input[type='number']{
 
 .order__payment-title{
   display: block;
+  margin: 0;
+  margin-bottom: 12px;
+  font-size: 20px;
 }
 
 
 .order__payment-label{
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
 
+
+.order__payment-label:last-child{
+  margin-bottom: 0;
 }
 
 .order__radio{
+  margin-right: 8px;
   
 }
 
@@ -505,6 +521,30 @@ input[type='number']{
 
   .product {
     min-height: 450px;
+  }
+
+  .cart__container{
+    grid-template-columns: 1fr 300px;
+  }
+
+  .cart__items{
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));  /* по 180px будет столько карточек сколько их влезет */
+  }
+
+  .cart-item__title{
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; /*  при длинном названиеи будут отображатся  только 2 строчки */
+    -webkit-box-orient: vertical;
+  }
+
+  .cart__summary{
+    width: 300px;
+  }
+
+  .order__form{
+    max-width: 620px;
   }
 
   .footer__menu{
@@ -555,9 +595,8 @@ input[type='number']{
 
   .products__list{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(217px, 1fr)); /* 217px мин шириина карточки, как только они станут <217 то будет перенос */
+    grid-template-columns: repeat(auto-fill, minmax(217px, 1fr)); /* по 217px будет столько карточек сколько их влезет, 217px мин шириина карточки, как только они станут <217 то будет перенос */
     gap: 16px;
-
   }
 
   .product{
@@ -575,6 +614,96 @@ input[type='number']{
 
   .product__price{
     font-size: 16px;
+  }
+
+  .cart{
+    padding: 139px 0 30px;
+  }
+
+  .cart__container{
+    gap: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .cart__title{
+    order: 2;
+    margin-bottom: 24px;
+    font-size: 36px;
+  }
+
+  .cart__items{
+    order: 3;
+    grid-template-columns: repeat(auto-fit, minmax(159px, 1fr));  /* по 180px будет столько карточек сколько их влезет */
+  }
+
+  .cart-item__title{
+    font-size: 16px;
+    display: block;
+    white-space: no-wrap;
+  }
+
+  .cart-item__quantity{
+    gap: 0;
+  }
+
+  .cart-item__quantity-button{
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+  }
+
+  .cart-item__quantity-input{
+    font-size: 16px;
+  }
+
+  .cart-item__price{
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .cart__summary{
+    order: 1;
+    grid-template-areas: 'title total button'; 
+    grid-template-columns: min-content 1fr min-content;  /* title и  button занимают по минимуму, total занимает все оставшееся пространство */
+    gap: 6px;
+    margin-bottom: 40px;
+  }
+
+  .cart__summary-title{
+    grid-area: title;
+    font-size: 16px;
+  }
+
+  .cart__total{
+    grid-area: total;
+    font-size: 16px;
+  }
+
+  .cart__order-button{
+    grid-area: button;
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  .order{
+    padding: 30px 0 80px;
+  }
+
+  .order__title{
+    font-size: 36px;
+  }
+
+  .order__form{
+    gap: 16px;
+    max-width: none;;  
+  }
+
+  .order__input{
+    padding: 10px 16px;
+  }
+
+  .order__payment{
+    padding-top: 8px;
   }
 
   .footer{
@@ -629,10 +758,8 @@ input[type='number']{
     min-height: auto;
     padding-top: 90px;
     padding-bottom: 250px;
-     
     background-position: center bottom 0;
     background-size: 145px 229px;
-   
     background-image: url('/img/hero_mobile.png');
   }
 
@@ -644,7 +771,6 @@ input[type='number']{
 
   .promo__button{
     padding:12px 18px;
-
   }
 
   .products{
@@ -670,6 +796,102 @@ input[type='number']{
   }
 
   .product__title{
+    font-size: 16px;
+  }
+
+  .cart{
+    padding: 100px 0 30px;
+  }
+
+  .cart__container{
+    display: grid;
+    align-items: start; /*  чтоб не растягивались грид элменты */
+    grid-template-columns: 1fr;
+  }
+
+  .cart__title{
+    order: 2;
+    margin-bottom: 24px;
+    font-size: 36px;
+  }
+
+  .cart__items{
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px; 
+  }
+
+  .cart-item__info{
+    padding: 16px 8px;
+  }
+
+  .cart-item__quantity{
+    margin-bottom: 12px;
+  }
+
+  .cart__summary{
+    grid-column: 1 / -1;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    grid-template-areas: 
+      'title button'
+      'total button';
+  }
+
+  .cart__summary-title{
+    font-size: 16px;
+  }
+
+  .cart__total{
+    font-size: 16px;
+  }
+
+  .cart__order-button{
+    justify-self: end;
+  }
+
+  .order{
+    padding: 30px 0 60px;
+  }
+
+  .order__title{
+    font-size: 36px;
+  }
+
+  .order__form{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px; 
+    max-width: 640px;
+  }
+
+  .order__input{
+    padding: 17px 16px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .order__input::placeholder{
+    font-size: 16px;
+    line-height: 1.24;
+    color: #b8b8b8;
+  }
+
+  .order__payment{
+    padding-top: 12px;
+  }
+
+  .order__payment-title{
+    margin-bottom: 12px;
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+
+  .order__payment-label{
+    display: block;
+    margin-bottom: 8px;
     font-size: 16px;
   }
 
