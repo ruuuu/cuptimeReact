@@ -1,0 +1,1 @@
+export const API_URL='https://cup-time-api-kdz4.onrender.com';
