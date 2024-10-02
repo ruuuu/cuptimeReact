@@ -1,9 +1,22 @@
-import { Product } from "./Product.jsx"
-import { products } from "../products.js"
+import { Product } from './Product.jsx';
+import { useEffect } from 'react';
+import { useProducts } from '../context/productContext.jsx';
+import { useSearchParams } from 'react-router-dom';
 
-
+// НАЧАЛО
 
 export const Products = () => {
+
+  const [ searchParams ] = useSearchParams(); // из реакта хук для search-парамтров, searchParams -объект
+  const category = searchParams.get('category'); // полуичли search-парамер cateogry
+
+  const { products, setCategory } = useProducts(); // useProducts этот хук сами создали, он вызовет хук useContext(из productContext.jsx)
+
+
+  useEffect(() => {
+    setCategory(category);  // отправится запрос к серверу , котрый прописан в useEffect(в productContext.jsx)
+  }, [ category, setCategory ]);  // при смене category, вызовется переданный колбэк
+
 
 
   return (

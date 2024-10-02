@@ -1,8 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 
 
 
 export const Header = () => {
+
+  const location = useLocation(); // хук реакта
+  console.log('хук location ', location)
+
+
+  const getActiveClass = (category) => {  // вернет активный класс .active
+
+    const currentCategory = new URLSearchParams(location.search).get('category');   // URLSearchParams () встроен в js
+    return currentCategory === category ? "active" : "";
+  } 
+
+
+
+
+
 
 
   return (
@@ -16,19 +32,19 @@ export const Header = () => {
           <nav className="header__nav">
             <ul className="header__menu">
               <li className="header__menu-item">
-                <a className="header__menu-link" href="#">Чай</a>
+                <Link className={`header__menu-link ${getActiveClass('tea')}`}  to="/products?category=tea">Чай</Link>    {/*category это search-паратер*/}
               </li>
               <li className="header__menu-item">
-                <a className="header__menu-link" href="#">Кофе</a> 
+                <Link className={`header__menu-link ${getActiveClass('coffee')}`}  to="/products?category=coffee">Кофе</Link> 
               </li>
               <li className="header__menu-item">
-                <a className="header__menu-link" href="#">Чайники</a>
+                <Link className={`header__menu-link ${getActiveClass('teapots')}`}  to="/products?category=teapots">Чайники</Link>
               </li>
               <li className="header__menu-item">
-                <a className="header__menu-link" href="#">Турки</a>
+                <Link className={`header__menu-link ${getActiveClass('cezves')}`}  to="/products?category=cezves">Турки</Link>
               </li>
               <li className="header__menu-item">
-                <a className="header__menu-link" href="#">Прочее</a>
+                <Link className={`header__menu-link ${getActiveClass('other')}`}  to="/products?category=other">Прочее</Link>
               </li>
             </ul>
           </nav>

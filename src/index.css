@@ -116,8 +116,8 @@ input[type='number']{
 .header__menu-item {
 }
 
-.header__menu-link {
-    
+.header__menu-link.active {
+    color: #64099b;
 }
 
 .header__cart-link {
