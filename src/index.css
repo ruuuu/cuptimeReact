@@ -490,6 +490,11 @@ input[type='number']{
   
 }
 
+.skeleton-wrapper{
+    width: 100%;
+    height: 600px;   /* как и высота карточки товара */
+}
+
 @media(max-width: 1240px){ /* от декстопа уменьшаем */
 
   .container{
@@ -549,6 +554,11 @@ input[type='number']{
 
   .footer__menu{
     gap: 32px;
+  }
+
+
+  .skeleton-wrapper{
+    height: 450px;   /* как и высота карточки товара */
   }
 }
 
@@ -725,6 +735,10 @@ input[type='number']{
   .footer__email{
     margin-bottom: 12px;
     font-size: 16px;
+  }
+
+  .skeleton-wrapper{
+    height: 360px;   /* как и высота карточки товара */
   }
 }
 
@@ -930,6 +944,9 @@ input[type='number']{
     order: 1;
   }
 
+
+
+  
   
 
 }

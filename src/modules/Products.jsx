@@ -2,6 +2,9 @@ import { Product } from './Product.jsx';
 import { useEffect } from 'react';
 import { useProducts } from '../context/productContext.jsx';
 import { useSearchParams } from 'react-router-dom';
+import { SkeletonLoader } from './SkeletonLoader.jsx';
+
+
 
 // НАЧАЛО
 
@@ -18,18 +21,32 @@ export const Products = () => {
   }, [ category, setCategory ]);  // при смене category, вызовется переданный колбэк
 
 
+  const setTitle = (category) => {
+    if(category === 'tea') return 'Чай';
+
+    if(category === 'coffee') return 'Кофе';
+
+    if(category === 'teapots') return 'Чайники';
+
+    if(category === 'cezves') return 'Турки';
+
+    if(category === 'other') return 'Другое';
+  }
+
+  
 
   return (
         <section className="products">
           <div className="container products__container">
-            <h2 className="products__title"> Чай </h2>
+            <h2 className="products__title"> { setTitle(category) } </h2>
 
             <ul className="products__list">
-               { products.map((item) => { // вернет массив из <Product />
+               { products.length ? products.map((item) => { // вернет массив из <Product />
                   return (
                     <Product data={item}  key={item.id} />      // передаем пропс data 
                   )
                 }) 
+                : ( <SkeletonLoader /> )  // если продукты не подгрузилсь то вернет элмент <SkeletonLoader />
                }
             </ul>
           </div>

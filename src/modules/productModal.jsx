@@ -1,5 +1,7 @@
  // постаивли биилиотеку реакта: modal-react
 import Modal from 'react-modal';
+import { API_URL } from '../const.js';
+
 
 // модалка для продукта
 
@@ -17,6 +19,8 @@ const customStyles = { // стили для нашей модалки
 
 Modal.setAppElement('#root') // id=root в index.html
 
+
+
 export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(зарпос на закрытие)
 
   if(!data){
@@ -24,7 +28,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
   }
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles} contentLabel='Product Modal'>   {/* компонент реаакта */}
+    <Modal isOpen={isOpen}  onRequestClose={onRequestClose}  style={customStyles}  contentLabel='Product Modal'>   {/* компонент реаакта */}
       
       <h2> {data.title} </h2>
       <img src={`${API_URL}${data.img}`} alt={data.title} />
@@ -40,7 +44,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
         }
       </ul>
 
-      <button onClick={onRequestClose}> Закрыть </button>
+      <button onClick={onRequestClose}> Закрыть </button>           {/*при нажатии на Закрыть,вызовется onRequestClose() */}
     </Modal>
   )
 };

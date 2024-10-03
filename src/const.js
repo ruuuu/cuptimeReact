@@ -1,1 +1,1 @@
-export const API_URL='https://cup-time-api-s9jb.onrender.com'; // https://cup-time-api-kdz4.onrender.com
+export const API_URL='http://localhost:3000'; // https://cup-time-api-kdz4.onrender.com
