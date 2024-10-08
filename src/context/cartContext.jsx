@@ -48,11 +48,45 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
     setCart(newCart); // cart= newCart
-    // localStorage.setItem('cart', JSON.stringify(cart));  // обновлем LocalStorage
+    // localStorage.setItem('cart', JSON.stringify(cart));  // обновлем localStorage
   };
 
 
-  const change
+
+  const removeFromCart = (productId) => {
+    
+    setCart(cart.filter((cartItem) => cartItem.id !== productId)); // filter() вернет новый массив элемнтов удовлеворяющие условию, и обновили cart 
+  };
+
+
+
+  const updateQuantity = (productId, quantity) => { // в поле ввода ввели  колво quantity
+
+    if(quantity <= 0 ){
+      removeFromCart(productId);
+    }
+    else{
+
+      const newCart = cart.map((cartItem) => {      // вернет новы массив элементы которого удовлетворяют условиям
+        console.log('newCart in map() ', newCart)
+
+        if(cartItem.id === productId){
+          return  { ...cartItem, quantity }; // ...cartItem = {id, price, name, quantity} c обновленным quantity
+        } 
+        else{
+          return cartItem;
+        }
+      }); 
+
+      setCart(newCart);
+    }
+  };
+
+
+
+  
+
+
 
 
   return (
