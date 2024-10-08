@@ -8,8 +8,10 @@ import { API_URL } from '../const.js'
 
 const ProductContext = createContext(); // создался контекст
 
+
+
 export const ProductProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компонентв котрые  будетт иметь доступ к данным в ProductContext
+  // children-компонентв которые  будут иметь доступ к данным в ProductContext
   
   // завели перем-ые состояния products и category:
   const [ products, setProducts ] = useState([]);  // нач значние products=[]
@@ -36,11 +38,11 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
 
 
   return (
-    <ProductContext.Provider  value={{ products, setCategory }}>
-        {children}   {/* children имеют доступ к products, setCategory  */}
+    <ProductContext.Provider  value={{ products, setCategory }}>    {/* отправляем products, setCategory в Provider */}
+        {children}   {/* children(др комопненты) имеют доступ к products, setCategory  */}
     </ProductContext.Provider>
   )
 };
 
 
-export const useProducts = () => useContext(ProductContext);
+export const useProducts = () => useContext(ProductContext); // useProducts это наш хук, его придумали сами.  Он отдает данные контекста(конекст из котрого можно вытащить данные)

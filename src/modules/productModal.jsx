@@ -47,8 +47,8 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
     setQuantity(quantity + 1);
   };
 
-  const handleAddToCart = () => {
-
+  const handleAddToCart = () => { // добавление товара в Корзину
+// TODO
   };
 
 
