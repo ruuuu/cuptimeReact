@@ -2,9 +2,11 @@
 import Modal from 'react-modal'; // используем готовую модалку из реакта
 import { API_URL } from '../const.js';
 import { useState } from 'react';
+import { useCart } from '../context/cartContext.jsx';
 
 
-//  модалка добавлени колва товара в Корзину
+
+//  модалка добавлени кол-ва товара в Корзину из карточки товара
 
 const customStyles = { // стили для нашей модалки
   content: {
@@ -22,13 +24,14 @@ Modal.setAppElement('#root') // id=root в index.html
 
 
 
-
+//                                                    data = {id, name, price}
 export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(зарпос на закрытие)
 
   // завели перем состояния:
-  const [ quantity, setQuantity ] = useState(1); // колва товара
+  const [ quantity, setQuantity ] = useState(1); // кол-во товара
+  const { addToCart } = useCart();  // useCart этот хук сами создали, он вызовет хук useContext(из cartContext.jsx)
 
-
+  //, removeFromCart, updateQuantity
 
   if(!data){
     return null;
@@ -44,11 +47,15 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
 
 
   const handleIncrease = () => {
+
     setQuantity(quantity + 1);
   };
 
-  const handleAddToCart = () => { // добавление товара в Корзину
-// TODO
+
+  const handleAddToCart = () => { // добавление товара в Корзин
+
+    addToCart(data, quantity);
+    onRequestClose(); // закрыли модалку
   };
 
 
@@ -77,7 +84,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
       </div>
 
       <button onClick={handleAddToCart}> Добавить в корзину </button>
-      <button onClick={onRequestClose}> Закрыть </button>           {/*при нажатии на Закрыть,вызовется onRequestClose() */}
+      <button onClick={onRequestClose}> Закрыть </button>           {/* при нажатии на Закрыть, вызовется onRequestClose() */}
     </Modal>
   )
 };

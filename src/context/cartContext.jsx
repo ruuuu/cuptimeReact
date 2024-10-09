@@ -2,14 +2,14 @@ import { createContext, useEffect, useState } from "react";
 
 
 
-export const CartContext = createContext();  // создался контекст
+const CartContext = createContext();  // создался контекст
 
 
 
 export const CartProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компоненты которые  будут иметь доступ к данным в CartContext
+  // children-компоненты(.jsx) которые  будут иметь доступ к данным в CartContext
 
-  // завли пер
+  // завели перем состояния
   const [ cart, setCart ] = useState([]); // товары корзины хрнаим в localStorage
 
   
@@ -31,12 +31,15 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
 
-  const addToCart = (product, quantity) => { // product - {id, name, price} добавляемый товар и его колво
+
+  const addToCart = (product, quantity) => { // product - { id, title, image, price, additional } добавляемый товар и его колво
+
+    console.log('in addToCart product is ', product)
 
     const newCart = [...cart]; // сделали копию массива cart(три точки кладут элементы в пустой массив и раскладывают через запятую), новый массив товаров
     // [{id, quantity }, {}]
     
-    const itemIndex = newCart.findIndex((cartItem) => cartItem.id === product.id);  // индекс товара которого нет в Корзине
+    const itemIndex = newCart.findIndex((cartItem) => (cartItem.id === product.id));  // индекс товара которого нет в Корзине
 
     
     if(itemIndex >= 0) {  // если в Корзине есть товар product
@@ -53,25 +56,29 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
 
+
   const removeFromCart = (productId) => {
-    
+    // const filtercart = cart.filter((cartItem) => cartItem.id !== productId)
+    // console.log('filtercart ', filtercart)
+
     setCart(cart.filter((cartItem) => cartItem.id !== productId)); // filter() вернет новый массив элемнтов удовлеворяющие условию, и обновили cart 
   };
 
 
 
-  const updateQuantity = (productId, quantity) => { // в поле ввода ввели  колво quantity
+
+  const updateQuantity = (productId, quantity) => { // в поле ввода товара  ввели  колво quantity
 
     if(quantity <= 0 ){
       removeFromCart(productId);
     }
     else{
 
-      const newCart = cart.map((cartItem) => {      // вернет новы массив элементы которого удовлетворяют условиям
+      const newCart = cart.map((cartItem) => {      // вернет новый массив с измененными элементами [{ id, title, image, price, additional, quantity }, {},{}  ]
         console.log('newCart in map() ', newCart)
 
         if(cartItem.id === productId){
-          return  { ...cartItem, quantity }; // ...cartItem = {id, price, name, quantity} c обновленным quantity
+          return  { ...cartItem, quantity }; // вернет объект, ...cartItem = {id, title, image, price, additional, quantity} c обновленным quantity
         } 
         else{
           return cartItem;
@@ -84,16 +91,13 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
 
-  
-
-
 
 
   return (
-    <CartContext.Provider  value={{ cart }}>
-        {children}   {/* children(др компоненты) имеют доступ к cart */}
+    <CartContext.Provider  value={{ cart, addToCart, removeFromCart, updateQuantity }}>
+        {children}   {/* children(др компоненты) имеют доступ к cart, addToCart, removeFromCart, updateQuantity */}
     </CartContext.Provider>
-  )
+  );
 };
 
 

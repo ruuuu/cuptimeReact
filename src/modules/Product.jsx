@@ -6,9 +6,10 @@ import { ProductModal } from "./productModal.jsx";
 //                        props
 export const Product  = ({ data }) => { // props = { data: {image, price, title}}, деструктурировали(вытащили data)
 
-  //console.log(props)  
+  // console.log(props)  
   // завели перем состояния:
   const [ modalIsOpen, setModalIsOpen ] = useState(false); // изначально модалка закрыт
+
 
   const openModal = (evt) => {
     evt.preventDefault(); // чтобы при нажатии на картчоку продукта не было перзагрузки страницы
@@ -36,7 +37,7 @@ export const Product  = ({ data }) => { // props = { data: {image, price, title}
       </a>
 
 
-      <ProductModal isOpen={modalIsOpen}  onRequestClose={closeModal}  data={data} />
+      <ProductModal isOpen={modalIsOpen}  onRequestClose={closeModal}  data={data} /> 
     </li>
   )
 };

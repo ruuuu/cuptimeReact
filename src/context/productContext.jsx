@@ -11,7 +11,7 @@ const ProductContext = createContext(); // создался контекст
 
 
 export const ProductProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компонентв которые  будут иметь доступ к данным в ProductContext
+  // children-компонентв(.jsx) которые  будут иметь доступ к данным в ProductContext
   
   // завели перем-ые состояния products и category:
   const [ products, setProducts ] = useState([]);  // нач значние products=[]
@@ -29,7 +29,7 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
             
           return response.json(); // [{}, {}]
         })
-        .then((data) => setProducts(data))        // в products запишется data = [{}, {}]
+        .then((data) => setProducts(data))        // обновляем products: в products запишется data = [{}, {}]
         .catch(err => console.error("error in fetching ", err))
     }
   }, [ category ]);  // при каждой смене category вызовется переданный колбэк

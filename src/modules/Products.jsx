@@ -15,6 +15,7 @@ export const Products = () => {
 
   const { products, setCategory } = useProducts(); // useProducts этот хук сами создали, он вызовет хук useContext(из productContext.jsx)
 
+  console.log('products ', products)
 
   useEffect(() => {
     setCategory(category);  // отправится запрос к серверу , котрый прописан в useEffect(в productContext.jsx)
