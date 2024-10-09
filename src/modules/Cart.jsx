@@ -2,6 +2,7 @@ import { products } from "../products.js"
 import { CartItem } from "./CartItem.jsx"
 
 
+// страница Корзины
 
 export const Cart = () => {
 

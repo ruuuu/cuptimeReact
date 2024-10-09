@@ -53,6 +53,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
 
 
   const handleAddToCart = () => { // добавление товара в Корзин
+    console.log('data ', data)
 
     addToCart(data, quantity);
     onRequestClose(); // закрыли модалку

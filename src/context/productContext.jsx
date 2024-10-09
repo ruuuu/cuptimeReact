@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from "react"
-import { useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from "react"
 import { API_URL } from '../const.js'
+
 
 // в реакт используется контекст(createContext) -это некое хранилище, котрое мы создаем, там описываем логику и 
 //когла меняются внтури данные(ex: category), мы в любом компоненте можем к этим данным обратиться и перерисовать компонент
@@ -19,6 +19,8 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
 
 
   useEffect(() => {
+
+    console.log('зашли сюда')
 
     if(category){
       fetch(`${API_URL}/api/products/${category}`) // 
