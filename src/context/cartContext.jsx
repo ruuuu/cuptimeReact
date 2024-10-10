@@ -7,7 +7,7 @@ const CartContext = createContext();  // создался контекст
 
 
 export const CartProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компоненты(.jsx) которые  будут иметь доступ к данным в CartContext
+  // children-компоненты(.jsx) которые  будут иметь доступ к данным(cart, addToCart, removeFromCart, updateQuantity) CartContext
 
   // завели перем состояния
   const [ cart, setCart ] = useState(null); // товары корзины хрнаим в localStorage
@@ -16,33 +16,28 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
   useEffect(() => {
 
-    const storeCart = JSON.parse(localStorage.getItem('cart') || '[]')  // получаем даыне из LocalStorage(там json-строки), поэтому парсимbcv
+    const storeCart = JSON.parse(localStorage.getItem('cart') || '[]')  // получаем даыне из localStorage(там json-строки), поэтому парсим
     setCart(storeCart); // cart=[{},{},{}] данные из localStorage
   
-  }, []); // коллбэк выпонится 1 раз при запуске программы
+  }, []); // коллбэк выпонится 1 раз (при запуске программы)
 
 
 
   useEffect(() => {
       
       if(Array.isArray(cart)){      // если cart это массив
-        localStorage.setItem('cart', JSON.stringify(cart));  // cart станет строкой,  отправка товаров Корзины в localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));          // cart станет строкой,  отправка товаров Корзины в localStorage
       }
    
-  }, [ cart ]); // когда будет меняться cart(удаяем товар/добавляем), тогда будет вызываться коллбэк
+  }, [ cart ]); // когда будет меняться cart(удаяем/добавляем товар), тогда будет вызываться коллбэк
 
 
 
 
   const addToCart = (product, quantity) => { // product - { id, title, image, price, additional } добавляемый товар и его колво
 
-    console.log('in addToCart product is ', product)
-
     const newCart = [...cart]; // сделали копию массива cart(три точки кладут элементы в пустой массив и раскладывают через запятую), новый массив товаров
-    // newCart = [{id, quantity, img, title, additional }, {}]
-    
-    console.log('newCart после копирования cart ', newCart)
-    
+      
     const itemIndex = newCart.findIndex((cartItem) => cartItem.id === product.id);  // индекс товара которого нет в Корзине
 
     
@@ -53,13 +48,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
       newCart.push({ ...product, quantity });  // если в Корзине нет товара product, ...product вернет {id, title, price, img, additional}
     }
 
-    console.log('newCart after update ', newCart)
-
-
-    setCart(newCart); // cart= newCart
-    
-    console.log('cart после добалвения товараа в корзину ', cart)
-    
+    setCart(newCart); // обновили cart= newCart 
   };
 
 
@@ -81,21 +70,16 @@ export const CartProvider = ({ children }) => { // провайдер котры
       removeFromCart(productId);
     }
     else{
-
       const newCart = cart.map((cartItem) => {      // вернет новый массив с измененными элементами [{ id, title, img, price, additional, quantity }, {},{}  ]
-        console.log('newCart in map() ', newCart)
-
         if(cartItem.id === productId){
-          return  { ...cartItem, quantity }; // вернет объект, ...cartItem = {id, title, img, price, additional, quantity} c обновленным quantity
+          return  { ...cartItem, quantity }; // вернет объект {id, title, img, price, additional, quantity}, где  ...cartItem = {id, title, img, price, additional, quantity} c обновленным quantity
         } 
         else{
           return cartItem;
         }
       }); 
 
-      setCart(newCart);
-
-      console.log('после увеличения колва товара cart  стал ', cart )
+      setCart(newCart); // обновили cart
     }
   };
 

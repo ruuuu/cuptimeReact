@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom"
 
 function App() {
 
-  // роутинг подклчили Router 
+  // роутинг (подклчили Router )
   return (
      <BrowserRouter>  
         <Header />

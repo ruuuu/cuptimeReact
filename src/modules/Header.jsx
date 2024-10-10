@@ -49,7 +49,7 @@ export const Header = () => {
             </ul>
           </nav>
 
-          <Link to="/cart" className="header__cart-link" aria-label="Открыть корзину"> 6 </Link>
+          <Link to="/cart" className="header__cart-link" aria-label="Открыть корзину"> 6 </Link>  {/*  aria-label добавляем для кнопок ук отрых нет надписей(для слепых) */}
         </div>
       </header>
   )

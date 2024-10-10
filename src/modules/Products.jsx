@@ -43,9 +43,7 @@ export const Products = () => {
 
             <ul className="products__list">
                { products.length ? products.map((item) => { // вернет массив из <Product />
-                  return (
-                    <Product data={item}  key={item.id} />      // передаем пропс data 
-                  )
+                  return ( <Product data={item}  key={item.id} /> )
                 }) 
                 : ( <SkeletonLoader /> )  // если продукты не подгрузилсь то вернет элмент <SkeletonLoader />
                }

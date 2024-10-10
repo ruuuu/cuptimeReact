@@ -11,7 +11,7 @@ const ProductContext = createContext(); // создался контекст
 
 
 export const ProductProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компонентв(.jsx) которые  будут иметь доступ к данным в ProductContext
+  // children-компонентв(.jsx) которые  будут иметь доступ к данным(products, setCategory)  ProductContext
   
   // завели перем-ые состояния products и category:
   const [ products, setProducts ] = useState([]);  // нач значние products=[]

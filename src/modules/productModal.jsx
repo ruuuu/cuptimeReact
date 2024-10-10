@@ -41,7 +41,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
   const handleDecrease = () => {
 
     if(quantity > 1) {
-      setQuantity(quantity - 1);
+      setQuantity(quantity - 1); // quantity уменьшился на 1
     }
   };
 
