@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useCart } from "../context/cartContext.jsx";
 
 
 
@@ -8,15 +9,15 @@ export const Header = () => {
   const location = useLocation(); // хук реакта
   console.log('хук location ', location)
 
+  const { cart } = useCart(); // наш хук
+
+
 
   const getActiveClass = (category) => {  // вернет активный класс .active
 
     const currentCategory = new URLSearchParams(location.search).get('category');   // URLSearchParams () встроен в js
     return currentCategory === category ? "active" : "";
   } 
-
-
-
 
 
 
@@ -49,7 +50,7 @@ export const Header = () => {
             </ul>
           </nav>
 
-          <Link to="/cart" className="header__cart-link" aria-label="Открыть корзину"> 6 </Link>  {/*  aria-label добавляем для кнопок ук отрых нет надписей(для слепых) */}
+          <Link to="/cart" className="header__cart-link" aria-label="Открыть корзину"> {cart.length} </Link>  {/*  aria-label добавляем для кнопок ук отрых нет надписей(для слепых) */}
         </div>
       </header>
   )

@@ -5,6 +5,7 @@ import { Promo } from "./Promo.jsx";
 import { Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
+// роутинг
 
 export const Main = () => {
 
@@ -12,10 +13,12 @@ export const Main = () => {
     
     <main className="main">
       <Routes>
-        <Route  path='/' element={<Navigate to="/products?category=tea" />} /> {/* когда будем находиться на главной, то будет редирект на /products?category=tea */}
+        <Route  path='/' element={<Navigate to="/products?category=tea" />} />      {/* когда будем находиться на главной, то будет редирект на /products?category=tea */}
 
+
+        {/* на главной старнице(path="/") будут отбражаться два компонента <Promo /> и <Products />: */}
         <Route path="/products" element={
-          <>     {/* на главной старнице(path="/") будут отбражаться два компонента <Promo /> и <Products /> */}
+          <>                  
             <Promo />
             <Products />
           </>

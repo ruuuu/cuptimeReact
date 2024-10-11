@@ -7,9 +7,7 @@ import { SkeletonLoader } from './SkeletonLoader.jsx';
 
 export const Cart = () => {
 
-  const { cart }  = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart
-
-  // cart = [ {id, title, img, additional, quantity}, {} ]
+  const { cart }  = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart, cart = [ {id, title, img, additional, quantity}, {} ]
 
   const totalPrice = cart ? cart.reduce((acc, item) => {
     return acc + item.price * item.quantity;
@@ -28,10 +26,10 @@ export const Cart = () => {
           <h2 className="cart__title"> Корзина ({cart.length}) </h2>
 
           <ul className="cart__items">
-            { cart.length ? cart.map((item) => (
+            { cart ? ( cart.map((item) => (
                 <CartItem key={item.id} data={item} />
-              ))
-
+                ))
+              )
               : ( <SkeletonLoader /> )  // если товары корзины не подгрузилсь то вернет элмент <SkeletonLoader />
             } 
           </ul>

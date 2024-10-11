@@ -15,6 +15,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
   
 
   useEffect(() => {
+    console.log('зашли во 1-ый useeffect: получили данные из localStorage и записали в cart')
 
     const storeCart = JSON.parse(localStorage.getItem('cart') || '[]')  // получаем даыне из localStorage(там json-строки), поэтому парсим
     setCart(storeCart); // cart=[{},{},{}] данные из localStorage
@@ -24,7 +25,8 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
   useEffect(() => {
-      
+      console.log('зашли во 2-ой useeffect: записали обновленный cart в localStorage')
+
       if(Array.isArray(cart)){      // если cart это массив
         localStorage.setItem('cart', JSON.stringify(cart));          // cart станет строкой,  отправка товаров Корзины в localStorage
       }
@@ -34,7 +36,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
 
-  const addToCart = (product, quantity) => { // product - { id, title, image, price, additional } добавляемый товар и его колво
+  const addToCart = (product, quantity) => { // product - { id, title, img, price, additional } добавляемый товар и его колво
 
     const newCart = [...cart]; // сделали копию массива cart(три точки кладут элементы в пустой массив и раскладывают через запятую), новый массив товаров
       
@@ -79,7 +81,8 @@ export const CartProvider = ({ children }) => { // провайдер котры
         }
       }); 
 
-      setCart(newCart); // обновили cart
+      
+      setCart(newCart); // обновили cart и  в этот момент срабоатет коллбэк из 2 -го useEffect
     }
   };
 

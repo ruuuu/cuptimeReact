@@ -6,11 +6,11 @@ import { SkeletonLoader } from './SkeletonLoader.jsx';
 
 
 
-// НАЧАЛО
+
 
 export const Products = () => {
 
-  const [ searchParams ] = useSearchParams(); // из реакта хук для search-парамтров, searchParams -объект
+  const [ searchParams ] = useSearchParams(); // из реакта хук для search-парамтров, нужен только searchParams -объект
   const category = searchParams.get('category'); // полуичли search-парамер cateogry
 
   const { products, setCategory } = useProducts(); // useProducts этот хук сами создали, он вызовет хук useContext(из productContext.jsx)

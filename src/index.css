@@ -317,7 +317,7 @@ input[type='number']{
   
 .cart__items{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  /*  по 200px будет столько карточек скоклько их влезет, max 1fr */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));  /*  по 200px будет столько карточек скоклько их влезет, max 1fr */
   gap: 20px;
 }
 
@@ -534,7 +534,7 @@ input[type='number']{
   }
 
   .cart__items{
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));  /* по 180px будет столько карточек сколько их влезет */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));  /* по 180px будет столько карточек в ряд  сколько их влезет */
   }
 
   .cart-item__title{
@@ -606,7 +606,7 @@ input[type='number']{
 
   .products__list{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(217px, 1fr)); /* по 217px будет столько карточек сколько их влезет, 217px мин шириина карточки, как только они станут <217 то будет перенос */
+    grid-template-columns: repeat(auto-fill, minmax(217px, 1fr)); /* по 217px будет столько карточек в ряд сколько их влезет, 217px мин шириина карточки, как только они станут <217 то будет перенос */
     gap: 16px;
   }
 
@@ -644,7 +644,7 @@ input[type='number']{
 
   .cart__items{
     order: 3;
-    grid-template-columns: repeat(auto-fit, minmax(159px, 1fr));  /* по 180px будет столько карточек сколько их влезет */
+    grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));  /* по 180px будет столько карточек в ряд сколько их влезет */
   }
 
   .cart-item__title{
@@ -833,7 +833,7 @@ input[type='number']{
 
   .cart__items{
     grid-column: 1 / -1;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));  /* будет стлько картчоек  в ряд сколько их влезет */
     gap: 8px; 
   }
 

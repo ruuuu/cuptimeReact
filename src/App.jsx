@@ -4,7 +4,7 @@ import { Footer } from "./modules/Footer.jsx"
 import { BrowserRouter } from "react-router-dom"
 
 
-
+// НАЧАЛО ОТСЮДА 
 function App() {
 
   // роутинг (подклчили Router )
