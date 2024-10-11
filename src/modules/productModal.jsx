@@ -24,15 +24,14 @@ Modal.setAppElement('#root') // id=root в index.html
 
 
 
-//                                                    data = {id, name, price}
+//                                                    data = {id, title, price, img, additianal}
 export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(зарпос на закрытие)
 
-  // завели перем состояния:
+  // завели перем состояния: это внутренее осстяние(используем только в этом компоненте)
   const [ quantity, setQuantity ] = useState(1); // кол-во товара
   const { addToCart } = useCart();  // useCart этот хук сами создали, он вызовет хук useContext(из cartContext.jsx)
 
-  //, removeFromCart, updateQuantity
-
+ 
   if(!data){
     return null;
   }
@@ -80,7 +79,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
 
       <div>
         <button onClick={handleDecrease}> - </button>
-        <input  type='number'  value={quantity} readOnly />  {/* readOnly- будем только считывать с это поля  */}
+        <input  type='number'  value={quantity}  readOnly />  {/* readOnly- будем только считывать с это поля(то есть поле это неуправляемое)  */}
         <button onClick={handleIncrease}> + </button>
       </div>
 

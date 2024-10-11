@@ -1,13 +1,13 @@
 import { API_URL } from "../const.js";
 import { useState } from "react";
-import { ProductModal } from "./productModal.jsx";
+import { ProductModal } from "./ProductModal.jsx";
 
 
 //                        props
 export const Product  = ({ data }) => { // props = { data: {image, price, title}}, деструктурировали(вытащили data)
 
   // console.log(props)  
-  // завели перем состояния:
+  // завели перем состояния: это внутренее осстяние(используем только в этом компоненте)
   const [ modalIsOpen, setModalIsOpen ] = useState(false); // изначально модалка закрыт
 
 

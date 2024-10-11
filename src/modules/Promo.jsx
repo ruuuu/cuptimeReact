@@ -3,7 +3,6 @@
 
 export const Promo = () => {
 
-
   return (
 
     <section className="promo">
@@ -13,6 +12,4 @@ export const Promo = () => {
       </div>
     </section>
   )
-
-
 }

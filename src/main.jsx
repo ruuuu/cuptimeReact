@@ -5,13 +5,17 @@ import 'normalize.css'; // устанвоиил как npm i normalize.css --sav
 import './index.css';
 import { ProductProvider } from './context/productContext.jsx';
 import { CartProvider } from './context/cartContext.jsx';
+import { OrderProvider } from './context/orderContext.jsx';
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ProductProvider> 
       <CartProvider>
-        <App />
+        <OrderProvider>
+          <App />
+        </OrderProvider>
       </CartProvider>
     </ProductProvider>
   </React.StrictMode>,
