@@ -39,7 +39,6 @@ a{
   color: inherit;
 }
 
-
 img{
   max-width: 100%;    /* чтоб картинка ен выпаадла из блока родителя */
   height: auto;  /*  чтоб картинка не расятягивалась/не сужалась, чтобы высота неменялас пропорционально ширине*/
@@ -59,13 +58,11 @@ input[type="number"]::-webkit-outer-spin-button{
   margin: 0;
 }
 
-
 input[type='number']{
   -webkit-appearance: none;  /*  для старых версий браузеров: */
   -moz-appearance: none;
   appearance: none;
   margin: 0;
-  
 }
 
 .container{
@@ -98,7 +95,7 @@ input[type='number']{
 
 
 .header __logo-link {
-    font-size: 0;  /* чтобы  у .svg убрать нижнюю полоску */
+  font-size: 0;  /* чтобы  у .svg убрать нижнюю полоску */
 }
 
 .header__logo {
@@ -108,28 +105,28 @@ input[type='number']{
 }
 
 .header__menu {
-    display: flex;
-    align-items: center;
-    gap: 50px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
 }
 
 .header__menu-item {
 }
 
 .header__menu-link.active {
-    color: #64099b;
+  color: #64099b;
 }
 
 .header__cart-link {
-    width: 28px;
-    height: 28px;
-    color: #64099b;
-    font-size: 12px;
-    background-image: url('/img/bag.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    text-align: center;
-    padding: 10px 4px 3px; /* чтобы отцентровать цифру */
+  width: 28px;
+  height: 28px;
+  color: #64099b;
+  font-size: 12px;
+  background-image: url('/img/bag.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 10px 4px 3px; /* чтобы отцентровать цифру */
 }
 
 
@@ -139,11 +136,11 @@ input[type='number']{
 }
 
 .promo__container {
-    padding-top: 210px;
-    padding-bottom: 80px;
-    background-image: url('/img/hero.png');
-    background-position: right 183px bottom 0;
-    background-repeat: no-repeat;
+  padding-top: 210px;
+  padding-bottom: 80px;
+  background-image: url('/img/hero.png');
+  background-position: right 183px bottom 0;
+  background-repeat: no-repeat;
 }
 
 .promo__title {
@@ -153,7 +150,6 @@ input[type='number']{
   font-weight: 400;
   font-size: 88px;
   line-height: 1.1;
-  
 }
 
 .promo__link {
@@ -203,12 +199,12 @@ input[type='number']{
 .product__content{
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* бует занимтаь все оставшее простанство */ 
+  flex-grow: 1; /* будет занимтаь все оставшее простанство */ 
   padding: 40px 24px 24px 24px;
 }
 
 .product__title {
-  flex-grow: 1;     /* бует занимтаь все оставшее простанство */ 
+  flex-grow: 1;     /* будет занимтаь все оставшее простанство */ 
   margin-bottom: 4px;
   font-size: 24px;
   overflow: hidden;  /* все что не вместится обрежется */
@@ -360,7 +356,7 @@ input[type='number']{
 }
 
 .cart-item{
-  font-size: 0; /* чтоы у картинки не було нижнего отступа  либо картинке указать display: block */
+  font-size: 0; /* чтоы у картинки не было нижнего отступа  либо картинке указать display: block */
   background-color: #f2f9f7;
 }
 
@@ -511,7 +507,6 @@ input[type='number']{
     padding: 12px 22px;
   }
 
-
   .promo__container {
       padding-top: 172px;
       padding-bottom: 60px;
@@ -534,7 +529,7 @@ input[type='number']{
   }
 
   .cart__items{
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));  /* по 180px будет столько карточек в ряд  сколько их влезет */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));  /* по 180px будет столько карточек в ряд,  сколько их влезет */
   }
 
   .cart-item__title{
@@ -556,7 +551,6 @@ input[type='number']{
   .footer__menu{
     gap: 32px;
   }
-
 
   .skeleton-wrapper{
     height: 450px;   /* как и высота карточки товара */
@@ -606,7 +600,7 @@ input[type='number']{
 
   .products__list{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(217px, 1fr)); /* по 217px будет столько карточек в ряд сколько их влезет, 217px мин шириина карточки, как только они станут <217 то будет перенос */
+    grid-template-columns: repeat(auto-fill, minmax(217px, 1fr)); /* по 217px будет столько карточек в ряд, сколько их влезет, 217px мин шириина карточки, как только они станут <217 то будет перенос */
     gap: 16px;
   }
 
@@ -644,7 +638,7 @@ input[type='number']{
 
   .cart__items{
     order: 3;
-    grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));  /* по 180px будет столько карточек в ряд сколько их влезет */
+    grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));  /* по 159px будет столько карточек в ряд, сколько их влезет */
   }
 
   .cart-item__title{
@@ -740,7 +734,6 @@ input[type='number']{
 
   .skeleton-wrapper{
     height: 360px;   /* как и высота карточки товара */
-
   }
 }
 
@@ -945,10 +938,5 @@ input[type='number']{
   .footer__contacts{
     order: 1;
   }
-
-
-
-  
-  
 
 }

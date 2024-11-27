@@ -3,7 +3,7 @@ import { API_URL } from '../const.js'
 
 
 // в реакт используется контекст(createContext) -это некое хранилище, котрое мы создаем, там описываем логику и 
-//когла меняются внтури данные(ex: category), мы в любом компоненте можем к этим данным обратиться и перерисовать компонент
+// когла меняются внтури данные(ex: category), мы в любом компоненте можем к этим данным обратиться и перерисовать компонент
 
 
 const ProductContext = createContext(); // создался контекст
@@ -15,12 +15,12 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
   
   // завели перем-ые состояния products и category:
   const [ products, setProducts ] = useState([]);  // нач значние products=[]
-  const [ category, setCategory ] = useState(""); 
+  const [ category, setCategory ] = useState("");  // нач значние category=""
 
 
   useEffect(() => {
 
-    console.log('зашли сюда')
+    console.log('зашли в ProductProvider')
 
     if(category){
       fetch(`${API_URL}/api/products/${category}`) // 
@@ -31,7 +31,7 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
             
           return response.json(); // [{}, {}]
         })
-        .then((data) => setProducts(data))        // обновляем products: в products запишется data = [{}, {}]
+        .then((data) => setProducts(data))        // обновляем products это data = [{}, {}]
         .catch(err => console.error("error in fetching ", err))
     }
   }, [ category ]);  // при каждой смене category вызовется переданный колбэк

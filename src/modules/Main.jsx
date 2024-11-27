@@ -5,6 +5,7 @@ import { Promo } from "./Promo.jsx";
 import { Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
+// компонент
 // роутинг
 
 export const Main = () => {

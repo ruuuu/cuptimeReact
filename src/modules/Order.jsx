@@ -1,6 +1,7 @@
 import { useOrder } from "../context/orderContext.jsx";
 
 
+// компонент - заказа
 export const Order = () => {
 
   const { orderDetails, updateOrderDetails } = useOrder();     // наш хук

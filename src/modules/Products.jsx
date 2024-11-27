@@ -7,7 +7,7 @@ import { SkeletonLoader } from './SkeletonLoader.jsx';
 
 
 
-
+// компонент
 export const Products = () => {
 
   const [ searchParams ] = useSearchParams(); // из реакта хук для search-парамтров, нужен только searchParams -объект

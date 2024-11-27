@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useCart } from '../context/cartContext.jsx';
 
 
-
-//  модалка добавлени кол-ва товара в Корзину из карточки товара
+// компонент
+//  модалка добавления кол-ва товара в Корзину из карточки товара
 
 const customStyles = { // стили для нашей модалки
   content: {
@@ -25,15 +25,15 @@ Modal.setAppElement('#root') // id=root в index.html (прикрпляем мо
 
 
 //                                                    data = {id, title, price, img, additianal}
-export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(зарпос на закрытие)
+export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(запрос на закрытие)
 
   // завели перем состояния: это внутренее осстяние(используем только в этом компоненте)
-  const [ quantity, setQuantity ] = useState(1); // кол-во товара
-  const { addToCart } = useCart();  // useCart этот хук сами создали, он вызовет хук useContext(из cartContext.jsx)
+  const [ quantity, setQuantity ] = useState(1);    // кол-во товара
+  const { addToCart } = useCart();        // useCart этот хук сами создали, он вызовет хук useContext(из cartContext.jsx)
 
  
   if(!data){
-    return null;
+    return null; // модалку не вернет
   }
 
 
@@ -52,7 +52,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
 
 
   const handleAddToCart = () => { // добавление товара в Корзин
-    console.log('data ', data)
+    console.log('data in handleAddToCart ', data)
 
     addToCart(data, quantity);
     onRequestClose(); // закрыли модалку
@@ -65,10 +65,12 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
       
       <h2> {data.title} </h2>
       <img src={`${API_URL}${data.img}`} alt={data.title} />
-      <p> {data.price} </p>
+      <p> {data.price}Р </p>
+      {/* { console.log('data.additional in ProductModal ', data.additional) } */}
       <ul>
-        {   // Object.entries(data.additional) это [[материал, медь], [объем, 250мл], [производитель, Индия]]
-          Object.entries(data.additional).map(([key, value]) => (   // [key, value] = item деструткрировали, вернет на кажой итераии <li>
+        {   
+          // Object.entries(data.additional) вернет массив [[материал, медь], [объем, 250мл], [производитель, Индия]]
+          Object.entries(data.additional).map(([key, value]) => (   // [key, value] = item деструткрировали, вернет на кажой итераии <li> </li>
               <li key={key}> 
                 <strong> {key} </strong> {value}
               </li>

@@ -3,6 +3,7 @@ import { API_URL } from "../const.js"
 import { useCart } from "../context/cartContext.jsx"
 
 
+// компонент
 export const CartItem = ({ data }) => { // data = { id, img, title, additional, quantity}
 
 

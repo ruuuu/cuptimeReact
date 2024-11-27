@@ -3,6 +3,8 @@ import { useState } from "react";
 import { ProductModal } from "./ProductModal.jsx";
 
 
+// компонент - карточка товара
+
 //                        props
 export const Product  = ({ data }) => { // props = { data: {image, price, title}}, деструктурировали(вытащили data)
 
@@ -37,7 +39,7 @@ export const Product  = ({ data }) => { // props = { data: {image, price, title}
       </a>
 
 
-      <ProductModal isOpen={modalIsOpen}  onRequestClose={closeModal}  data={data} /> 
+      <ProductModal isOpen={modalIsOpen}  onRequestClose={closeModal}  data={data} />  {/* модалка для продукта */}
     </li>
   )
 };

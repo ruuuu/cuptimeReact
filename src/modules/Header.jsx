@@ -3,7 +3,7 @@ import { useCart } from "../context/cartContext.jsx";
 
 
 
-
+// компонент
 export const Header = () => {
 
   const location = useLocation(); // хук реакта

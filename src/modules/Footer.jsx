@@ -1,6 +1,5 @@
 
-
-
+// компонент
 export const Footer = () => {
 
 

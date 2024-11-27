@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
   
 
   useEffect(() => {
-    console.log('зашли во 1-ый useeffect: получили данные из localStorage и записали в cart')
+    console.log('зашли во 1-ый useeffect: получаем данные из localStorage и записали в cart')
 
     const storeCart = JSON.parse(localStorage.getItem('cart') || '[]')  // получаем даыне из localStorage(там json-строки), поэтому парсим
     setCart(storeCart); // cart=[{},{},{}] данные из localStorage
@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
   useEffect(() => {
-      console.log('зашли во 2-ой useeffect: записали обновленный cart в localStorage')
+      console.log('зашли во 2-ой useeffect: записываем обновленный cart в localStorage')
 
       if(Array.isArray(cart)){      // если cart это массив
         localStorage.setItem('cart', JSON.stringify(cart));          // cart станет строкой,  отправка товаров Корзины в localStorage
@@ -40,7 +40,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
     const newCart = [...cart]; // сделали копию массива cart(три точки кладут элементы в пустой массив и раскладывают через запятую), новый массив товаров
       
-    const itemIndex = newCart.findIndex((cartItem) => cartItem.id === product.id);  // индекс товара которого нет в Корзине
+    const itemIndex = newCart.findIndex((cartItem) => cartItem.id === product.id);  // нашли индекс товара которого нет в Корзине
 
     
     if(itemIndex >= 0) {  // если в Корзине есть товар product
@@ -61,7 +61,8 @@ export const CartProvider = ({ children }) => { // провайдер котры
     // console.log('filtercart ', filtercart)
 
     setCart(cart.filter((cartItem) => cartItem.id !== productId)); // filter() вернет новый массив элемнтов удовлеворяющие условию, и обновили cart 
-  };
+    //  обновили cart и  в этот момент срабоатет коллбэк из 2 -го useEffect
+    };
 
 
 

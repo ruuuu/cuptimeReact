@@ -7,7 +7,7 @@ import { API_URL } from "../const.js";
 import Modal from 'react-modal'; // используем готовую модалку(компонент) из реакта
 
 
-
+// компопнент-Корзина
 Modal.setAppElement('#root') // id=root в index.html (прикрпляем модалку)
 
 
@@ -15,14 +15,14 @@ Modal.setAppElement('#root') // id=root в index.html (прикрпляем мо
 
 export const Cart = () => {
 
-  const { cart, clearCart }  = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart, cart = [ {id, title, img, additional, quantity}, {} ]
+  const { cart, clearCart } = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart, cart = [ {id, title, img, additional, quantity}, {} ]
 
   // заводим перем-ые состояния: это внутренее осстяние(используем только в этом компоненте)
   const [ orderStatus, setOrderStatus ] = useState(null);
   const [ orderId, setOrderId ] = useState(null);                 // c сервера получим
   const [ modalIsOpen, setModalIsOpen ] = useState(false);      // изначально модалка закрыта(модалка откроется после отрпавки заказа)
 
-  const { orderDetails, clearOrderDetails } = useOrder(); // наш хук
+  const { orderDetails, clearOrderDetails } = useOrder();       // наш хук
 
 
   const totalPrice = cart ? cart.reduce((acc, item) => {
@@ -74,9 +74,9 @@ export const Cart = () => {
 
 
 
-  // const closeModal = () => {
-  //   setModalIsOpen(false)
-  // };
+  const closeModal = () => {
+    setModalIsOpen(false)
+  };
 
 
 

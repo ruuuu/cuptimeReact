@@ -1,6 +1,5 @@
 
-
-
+// компонент
 export const Promo = () => {
 
   return (
