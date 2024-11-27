@@ -7,9 +7,9 @@ const CartContext = createContext();  // создался контекст
 
 
 export const CartProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компоненты(.jsx) которые  будут иметь доступ к данным(cart, addToCart, removeFromCart, updateQuantity) CartContext
+  // children-компоненты(.jsx) которые  будут иметь доступ к методам(cart, addToCart, removeFromCart, updateQuantity) CartContext
 
-  // завели перем состояния
+  // завели перем состояния cart
   const [ cart, setCart ] = useState(null); // товары корзины хрнаим в localStorage
 
   
@@ -88,10 +88,14 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
 
+  const clearCart = () => {
+    setCart([]); // очитсили массив cart 
+  };
+
 
 
   return (
-    <CartContext.Provider  value={{ cart, addToCart, removeFromCart, updateQuantity }}>
+    <CartContext.Provider  value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}>
         {children}   {/* children(др компоненты) имеют доступ к cart, addToCart, removeFromCart, updateQuantity */}
     </CartContext.Provider>
   );

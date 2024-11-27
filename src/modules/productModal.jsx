@@ -1,5 +1,5 @@
  // постаивли биилиотеку реакта: modal-react
-import Modal from 'react-modal'; // используем готовую модалку из реакта
+import Modal from 'react-modal'; // используем готовую модалку(компонент) из реакта
 import { API_URL } from '../const.js';
 import { useState } from 'react';
 import { useCart } from '../context/cartContext.jsx';
@@ -20,7 +20,7 @@ const customStyles = { // стили для нашей модалки
 };
 
 
-Modal.setAppElement('#root') // id=root в index.html
+Modal.setAppElement('#root') // id=root в index.html (прикрпляем модалку)
 
 
 

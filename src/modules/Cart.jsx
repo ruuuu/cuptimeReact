@@ -3,13 +3,19 @@ import { useCart } from "../context/cartContext.jsx"
 import { CartItem } from "./CartItem.jsx"
 import { SkeletonLoader } from './SkeletonLoader.jsx';
 import { useOrder } from "../context/orderContext.jsx";
+import { API_URL } from "../const.js";
+import Modal from 'react-modal'; // используем готовую модалку(компонент) из реакта
+
+
+
+Modal.setAppElement('#root') // id=root в index.html (прикрпляем модалку)
 
 
 // страница Корзины
 
 export const Cart = () => {
 
-  const { cart }  = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart, cart = [ {id, title, img, additional, quantity}, {} ]
+  const { cart, clearCart }  = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart, cart = [ {id, title, img, additional, quantity}, {} ]
 
   // заводим перем-ые состояния: это внутренее осстяние(используем только в этом компоненте)
   const [ orderStatus, setOrderStatus ] = useState(null);
@@ -36,16 +42,42 @@ export const Cart = () => {
     };
 
     //console.log('orderData ', orderData)
-    try{
 
-    } catch(err){
+    try{
+      const response = await fetch(`${API_URL}/api/orders`, {
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if(!response.ok){
+        throw new Error('Ошибка при отправке данных');
+      }
+
+      const result = await response.json();
+      setOrderStatus('success');
+      setOrderId(result.order.id);
+      clearCart();
+      clearOrderDetails();
+      setModalIsOpen(true); 
+    } 
+    catch(err){
       setOrderStatus('error');  // orderStatus = 'error'
       console.error(`Не удалось отправить данные: ${err}`);
-    } finally{
+    } 
+    finally{
       setModalIsOpen(true);     // modalIsOpen = true
     }
-
   };
+
+
+
+  // const closeModal = () => {
+  //   setModalIsOpen(false)
+  // };
+
 
 
   return (
@@ -55,7 +87,7 @@ export const Cart = () => {
 
           <ul className="cart__items">
             { cart ? ( cart.map((item) => (
-                <CartItem key={item.id} data={item} />
+                  <CartItem  key={item.id}  data={item} />
                 ))
               )
               : ( <SkeletonLoader /> )  // если товары корзины не подгрузилсь то вернет элмент <SkeletonLoader />
@@ -68,6 +100,14 @@ export const Cart = () => {
             <button className="cart__order-button" onClick={handleSubmit}> Заказать </button>
           </div>
         </div>
+
+        <Modal className="modal-cart" overlayClassName="modal-cart__overlay">
+            <h2 className="modal-cart__title">
+              {orderStatus === 'success' ? `Ваш заказ  ${orderId} успешно оформлен` : 'Прои зошла ошибка оформления заказа'} 
+            </h2>
+
+            <button className="modal-cart__button" onClick={closeModal}> Закрыть </button>
+        </Modal>
       </section>
   )
  

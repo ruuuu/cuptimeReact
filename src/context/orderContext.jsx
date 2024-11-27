@@ -7,7 +7,7 @@ const OrderContext = createContext();  // создался контекст
 
 
 export const OrderProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компоненты(.jsx) которые  будут иметь доступ к данным(orderDetails, updateOrderDetails, clearOrderDetails) OrderContext
+  // children-компоненты(.jsx) которые  будут иметь доступ к методам (orderDetails, updateOrderDetails, clearOrderDetails) OrderContext
 
   // завели перем состояния
   const [ orderDetails, setOrderDetails ] = useState({ name: '', phone: '', address: '', payment: 'cash' }); 
