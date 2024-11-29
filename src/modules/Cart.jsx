@@ -37,11 +37,11 @@ export const Cart = () => {
   const handleSubmit = async() => {    // async  тк отправка на сервер
 
     const orderData = {         // даннеые отправляемые на сервер
-      ...orderDetails,
+      ...orderDetails,  //три точик разложат свойства через запятую { name: '', phone: '', address: '', payment: 'cash' }
       items: cart.map((cartItem) => ({ id: cartItem.id, quantity: cartItem.quantity })),   // map вернет новый массив [{id, quantity}, {}].  Возвращаемый объект оборачиваем в круглые скобки чтобы сразу его вернуть
     };
 
-    //console.log('orderData ', orderData)
+    //console.log('orderData ', orderData)    // { name: '', phone: '', address: '', payment: 'cash', items: [{},{},{}] }
 
     try{
       const response = await fetch(`${API_URL}/api/orders`, {

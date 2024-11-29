@@ -24,12 +24,12 @@ Modal.setAppElement('#root') // id=root в index.html (прикрпляем мо
 
 
 
-//                                                    data = {id, title, price, img, additianal}
-export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(запрос на закрытие)
+//                                                    data = {id, title, price, img, additianal}--продукт
+export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(закрвает модалку)
 
   // завели перем состояния: это внутренее осстяние(используем только в этом компоненте)
-  const [ quantity, setQuantity ] = useState(1);    // кол-во товара
-  const { addToCart } = useCart();        // useCart этот хук сами создали, он вызовет хук useContext(из cartContext.jsx)
+  const [ quantity, setQuantity ] = useState(1);    // кол-во товара data
+  const { addToCart } = useCart();        // вызываем useCart , этот хук сами создали, он вызовет хук useContext(из cartContext.jsx)
 
  
   if(!data){
@@ -51,11 +51,11 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
   };
 
 
-  const handleAddToCart = () => { // добавление товара в Корзин
+  const handleAddToCart = () => { // добавление товара data в Корзин
     console.log('data in handleAddToCart ', data)
 
     addToCart(data, quantity);
-    onRequestClose(); // закрыли модалку
+    onRequestClose(); // закрыли модалку товара
   };
 
 
@@ -69,7 +69,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
       {/* { console.log('data.additional in ProductModal ', data.additional) } */}
       <ul>
         {   
-          // Object.entries(data.additional) вернет массив [[материал, медь], [объем, 250мл], [производитель, Индия]]
+          // Object.entries(data.additional) делает из объекта  массив [[материал, медь], [объем, 250мл], [производитель, Индия]]
           Object.entries(data.additional).map(([key, value]) => (   // [key, value] = item деструткрировали, вернет на кажой итераии <li> </li>
               <li key={key}> 
                 <strong> {key} </strong> {value}

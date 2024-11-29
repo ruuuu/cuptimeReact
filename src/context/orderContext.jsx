@@ -36,7 +36,7 @@ export const OrderProvider = ({ children }) => { // провайдер котр�
 
   return (
     <OrderContext.Provider  value={{ orderDetails, updateOrderDetails, clearOrderDetails }}>
-        {children}                {/* children(др компоненты) имеют доступ к orderDetails, updateOrderDetails, clearOrderDetails */}
+        {children}                {/* children(др компоненты jsx) имеют доступ к orderDetails, updateOrderDetails, clearOrderDetails */}
     </OrderContext.Provider>
   );
 };

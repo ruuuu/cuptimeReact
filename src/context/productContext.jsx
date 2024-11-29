@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 import { API_URL } from '../const.js'
 
 
+// вмето redux используем Provider
 // в реакт используется контекст(createContext) -это некое хранилище, котрое мы создаем, там описываем логику и 
 // когла меняются внтури данные(ex: category), мы в любом компоненте можем к этим данным обратиться и перерисовать компонент
 
@@ -10,8 +11,7 @@ const ProductContext = createContext(); // создался контекст
 
 
 
-export const ProductProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
-  // children-компонентв(.jsx) которые  будут иметь доступ к данным(products, setCategory)  ProductContext
+export const ProductProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами, т е children-компонентв(.jsx) которые  будут иметь доступ к данным(products, setCategory)  ProductContext
   
   // завели перем-ые состояния products и category:
   const [ products, setProducts ] = useState([]);  // нач значние products=[]
@@ -41,7 +41,7 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
 
   return (
     <ProductContext.Provider  value={{ products, setCategory }}>    {/* отправляем products, setCategory в Provider */}
-        {children}   {/* children(др комопненты) имеют доступ к products, setCategory  */}
+        {children}   {/* children(др комопненты jsx) имеют доступ к products, setCategory  */}
     </ProductContext.Provider>
   )
 };
