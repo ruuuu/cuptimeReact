@@ -46,7 +46,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
       newCart[itemIndex].quantity += quantity;
     }
     else{
-      newCart.push({ ...product, quantity });  // если в Корзине нет товара product, ...product вернет {id, title, price, img, additional}
+      newCart.push({ ...product, quantity });  // если в Корзине нет товара product, ...product вернет id, title, price, img, additional
     }
 
     setCart(newCart); // обновили cart= newCart  в этот момент срабоатет коллбэк из 2-го useEffect
@@ -55,7 +55,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
 
 
-  const removeFromCart = (productId) => {
+  const removeFromCart = (productId) => { // id удаляемого продукта
     // const filtercart = cart.filter((cartItem) => cartItem.id !== productId)
     // console.log('filtercart ', filtercart)
 
@@ -74,9 +74,9 @@ export const CartProvider = ({ children }) => { // провайдер котры
     else{  
       // или так: cart.map((cartItem) => cartItem.id === productId ? { ...cartItem, quantity } : cartItem)
       // или так:
-      const newCart = cart.map((cartItem) => {      // перебираем корзину, вернет новый массив с измененными элементами [{ id, title, img, price, additional, quantity }, {},{}  
+      const newCart = cart.map((cartItem) => {      // перебираем корзину, вернет новый массив с измененными элементами [{ id, title, img, price, additional, quantity }, {}, {} ] 
         if(cartItem.id === productId){
-          return  { ...cartItem, quantity };        // вернет объект {id, title, img, price, additional, quantity}, где  ...cartItem = {id, title, img, price, additional, quantity} c обновленным quantity
+          return  { ...cartItem, quantity: quantity };        // вернет объект {id: , title:, img:, price:, additional:, quantity: }, где  ...cartItem = {id, title, img, price, additional, quantity} c обновленным quantity
         } 
         else{
           return cartItem;
@@ -98,7 +98,7 @@ export const CartProvider = ({ children }) => { // провайдер котры
 
   return (
     <CartContext.Provider  value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}>
-        {children}   {/* children(др компоненты jsx) имеют доступ к cart, addToCart, removeFromCart, updateQuantity */}
+        {children}   {/* children(др компоненты jsx) имеют доступ к cart, addToCart(), removeFromCart(), updateQuantity() */}
     </CartContext.Provider>
   );
 };

@@ -15,15 +15,15 @@ Modal.setAppElement('#root') // id=root в index.html (прикрпляем мо
 
 export const Cart = () => {
 
-  const { cart, clearCart } = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart, cart = [ {id, title, img, additional, quantity}, {} ]
+  const { cart, clearCart } = useCart();  // это наш написанный хук, он вызовет хук useContext(из cartContext.jsx), нужен только cart и clearCart(), cart = [ {id, title, img, additional, quantity, price}, {} ]
 
   // заводим перем-ые состояния: это внутренее осстяние(используем только в этом компоненте)
   const [ orderStatus, setOrderStatus ] = useState(null);
-  const [ orderId, setOrderId ] = useState(null);                 // c сервера получим
+  const [ orderId, setOrderId ] = useState(null);                 // c сервера получим (после отправки данных формы)
   const [ modalIsOpen, setModalIsOpen ] = useState(false);      // изначально модалка закрыта(модалка откроется после отрпавки заказа)
+  const { orderDetails, clearOrderDetails } = useOrder();       // наш хук, сами создали
 
-  const { orderDetails, clearOrderDetails } = useOrder();       // наш хук
-
+  
 
   const totalPrice = cart ? cart.reduce((acc, item) => {
     return acc + item.price * item.quantity;
@@ -36,12 +36,19 @@ export const Cart = () => {
 
   const handleSubmit = async() => {    // async  тк отправка на сервер
 
-    const orderData = {         // даннеые отправляемые на сервер
-      ...orderDetails,  //три точик разложат свойства через запятую { name: '', phone: '', address: '', payment: 'cash' }
-      items: cart.map((cartItem) => ({ id: cartItem.id, quantity: cartItem.quantity })),   // map вернет новый массив [{id, quantity}, {}].  Возвращаемый объект оборачиваем в круглые скобки чтобы сразу его вернуть
-    };
+    const orderData = {         // данные отправляемые на сервер
+      ...orderDetails,  // три точки разложат свойства через запятую { name: '', phone: '', address: '', payment: 'cash' }
+      items: cart.map((cartItem) => ({ id: cartItem.id, quantity: cartItem.quantity }))
+    }   // map вернет новый массив [{ id, quantity }, {}].  Возвращаемый объект оборачиваем в круглые скобки чтобы сразу его вернуть
+    
 
-    //console.log('orderData ', orderData)    // { name: '', phone: '', address: '', payment: 'cash', items: [{},{},{}] }
+    // orderData = {}
+    // const items = cart.map((cartItem) => { // [ { id: , quantity: }, {id: , quantity: }]
+    //   return { id: cartItem.id, quantity: cartItem.quantity };
+    // })
+
+    
+    //console.log('orderData ', orderData)    // { name: '',  phone: '',  address: '',  payment: 'cash',  items: [{id, quantity},{},{}] }
 
     try{
       const response = await fetch(`${API_URL}/api/orders`, {
@@ -57,6 +64,7 @@ export const Cart = () => {
       }
 
       const result = await response.json();
+      console.log('result ', result)
       setOrderStatus('success');
       setOrderId(result.order.id);
       clearCart();
@@ -86,7 +94,7 @@ export const Cart = () => {
           <h2 className="cart__title"> Корзина ({ cart? cart.length : 0}) </h2>
 
           <ul className="cart__items">
-            { cart ? ( cart.map((item) => (
+            { cart ? ( cart.map((item) => (                   // вернет [<CartItem />, </CartItem/>]
                   <CartItem  key={item.id}  data={item} />
                 ))
               )
@@ -101,12 +109,12 @@ export const Cart = () => {
           </div>
         </div>
 
-        <Modal className="modal-cart" overlayClassName="modal-cart__overlay">
+        <Modal className="modal-cart"  overlayClassName="modal-cart__overlay"> 
             <h2 className="modal-cart__title">
-              {orderStatus === 'success' ? `Ваш заказ  ${orderId} успешно оформлен` : 'Прои зошла ошибка оформления заказа'} 
+              {orderStatus === 'success' ? `Ваш заказ  ${orderId} успешно оформлен` : 'Произошла ошибка оформления заказа'} 
             </h2>
 
-            <button className="modal-cart__button" onClick={closeModal}> Закрыть </button>
+            <button className="modal-cart__button"  onClick={closeModal}> Закрыть </button>
         </Modal>
       </section>
   )

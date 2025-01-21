@@ -36,6 +36,5 @@ export const Main = () => {
     </main>
   )
 
-  
 
 };

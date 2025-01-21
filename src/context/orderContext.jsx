@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 
 
@@ -9,7 +9,7 @@ const OrderContext = createContext();  // создался контекст
 export const OrderProvider = ({ children }) => { // провайдер котрый передает инормацию межд компонентами
   // children-компоненты(.jsx) которые  будут иметь доступ к методам (orderDetails, updateOrderDetails, clearOrderDetails) OrderContext
 
-  // завели перем состояния
+  // завели перем состояния:
   const [ orderDetails, setOrderDetails ] = useState({ name: '', phone: '', address: '', payment: 'cash' }); 
 
   
@@ -22,7 +22,7 @@ export const OrderProvider = ({ children }) => { // провайдер котр�
     // });
 
     // или лучше всего:
-    setOrderDetails((prevDetails) => ({ ...prevDetails, [field]: value })); // фунуия внннутр вернет новый объект
+    setOrderDetails((prevDetails) => ({ ...prevDetails, [field]: value })); //  вернет новый объект { name: '', phone: '', address: '', payment: 'cash' }
   };
 
 

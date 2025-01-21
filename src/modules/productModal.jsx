@@ -6,7 +6,7 @@ import { useCart } from '../context/cartContext.jsx';
 
 
 // компонент
-//  модалка добавления кол-ва товара в Корзину из карточки товара
+//  модалка добавления кол-ва товара в Корзину (появляется при нажатии на карточку товара)
 
 const customStyles = { // стили для нашей модалки
   content: {
@@ -24,7 +24,7 @@ Modal.setAppElement('#root') // id=root в index.html (прикрпляем мо
 
 
 
-//                                                    data = {id, title, price, img, additianal}--продукт
+//                                                    data = {id, title, price, img, additianal}--продукт добавлемые в корзину
 export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequestClose -функция(закрвает модалку)
 
   // завели перем состояния: это внутренее осстяние(используем только в этом компоненте)
@@ -51,7 +51,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
   };
 
 
-  const handleAddToCart = () => { // добавление товара data в Корзин
+  const handleAddToCart = () => { // добавление товара data в карточке товара/Корзин
     console.log('data in handleAddToCart ', data)
 
     addToCart(data, quantity);
@@ -60,19 +60,20 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
 
 
 
-  return (
+
+  return ( // модалка при нажатии на картчоку товара
     <Modal isOpen={isOpen}  onRequestClose={onRequestClose}  style={customStyles}  contentLabel='Product Modal'>   {/* <Modal> </Modal> это компонент реаакта */}
       
       <h2> {data.title} </h2>
       <img src={`${API_URL}${data.img}`} alt={data.title} />
       <p> {data.price}Р </p>
-      {/* { console.log('data.additional in ProductModal ', data.additional) } */}
+       {/* { console.log('data.additional in ProductModal ', data.additional) }  */}
       <ul>
         {   
           // Object.entries(data.additional) делает из объекта  массив [[материал, медь], [объем, 250мл], [производитель, Индия]]
           Object.entries(data.additional).map(([key, value]) => (   // [key, value] = item деструткрировали, вернет на кажой итераии <li> </li>
               <li key={key}> 
-                <strong> {key} </strong> {value}
+                <strong> {key}: </strong> {value}
               </li>
             )   
           )  
