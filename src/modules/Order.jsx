@@ -1,7 +1,7 @@
 import { useOrder } from "../context/orderContext.jsx";
 
 
-// компонент - заказа
+// компонент - Заказ
 export const Order = () => {
 
   const { orderDetails, updateOrderDetails } = useOrder();     // наш хук
@@ -9,12 +9,13 @@ export const Order = () => {
 
   const handleChange = (evt) => { // при вводе в поле сработает событие (evt - объект события)]
 
-    const target = evt.target; // <input>
+    // const target = evt.target; // <input>
+    // updateOrderDetails(target.name, target.value);    // получаем обновленный { name: '', phone: '', address: '', payment: 'cash' }
 
     // либо: 
-    // const { name, value } = evt.target;    //  деструткрировали
-
-    updateOrderDetails(target.name, target.value);    // получаем обновленный { name: '', phone: '', address: '', payment: 'cash' }
+    const { name, value } = evt.target;    //  деструткрировали
+    updateOrderDetails(name, value);
+    
     console.log('orderDetails ', orderDetails)
   };
 

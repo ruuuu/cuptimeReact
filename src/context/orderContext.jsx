@@ -14,15 +14,12 @@ export const OrderProvider = ({ children }) => { // провайдер котр�
 
   
 
-  const updateOrderDetails = (field, value) => { // field это name/phone/address/payment
+  const updateOrderDetails = (field, value) => { // field это id  полей, name/phone/address/payment
     
-    // setOrderDetails({
-    //   ...orderDetails,
-    //   [field]: value
-    // });
+    setOrderDetails({ ...orderDetails, [field]: value });
 
     // или лучше всего:
-    setOrderDetails((prevDetails) => ({ ...prevDetails, [field]: value })); //  вернет новый объект { name: '', phone: '', address: '', payment: 'cash' }
+    //setOrderDetails((prevDetails) => ({ ...prevDetails, [field]: value })); //  вернет новый объект { name: '', phone: '', address: '', payment: 'cash' }
   };
 
 
@@ -42,4 +39,4 @@ export const OrderProvider = ({ children }) => { // провайдер котр�
 };
 
 
-export const useOrder = () => useContext(OrderContext); //  useOrder это наш хук, его придумали сами. Он отдает данные контекста
+export const useOrder = () => useContext(OrderContext); //  useOrder это наш хук, его придумали сами. Он отдает данные(orderDetails, updateOrderDetails, clearOrderDetails) контекста

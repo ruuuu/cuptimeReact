@@ -38,8 +38,8 @@ export const Cart = () => {
 
     const orderData = {         // данные отправляемые на сервер
       ...orderDetails,  // три точки разложат свойства через запятую { name: '', phone: '', address: '', payment: 'cash' }
-      items: cart.map((cartItem) => ({ id: cartItem.id, quantity: cartItem.quantity }))
-    }   // map вернет новый массив [{ id, quantity }, {}].  Возвращаемый объект оборачиваем в круглые скобки чтобы сразу его вернуть
+      items: cart.map((cartItem) => ({ id: cartItem.id,  quantity: cartItem.quantity })),
+    };   // map вернет новый массив [{ id, quantity }, {}].  Возвращаемый объект оборачиваем в круглые скобки чтобы сразу его вернуть
     
 
     // orderData = {}
@@ -52,19 +52,20 @@ export const Cart = () => {
 
     try{
       const response = await fetch(`${API_URL}/api/orders`, {
-        method: 'POST',
-        header: {
-          'Content-Type': 'application/json',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(orderData),
-      });
+      })
 
       if(!response.ok){
-        throw new Error('Ошибка при отправке данных');
+        throw new Error("Ошибка при отправке данных");
       }
 
       const result = await response.json();
-      console.log('result ', result)
+      console.log('result ', result) // {message: 'Закау спешно отправлен', order: {{id: 26309, name: 'Irina', phone: '98767543578', address: 'Урал', items: Array(2)}}}
+
       setOrderStatus('success');
       setOrderId(result.order.id);
       clearCart();
@@ -83,7 +84,7 @@ export const Cart = () => {
 
 
   const closeModal = () => {
-    setModalIsOpen(false)
+    setModalIsOpen(false);
   };
 
 
@@ -105,11 +106,11 @@ export const Cart = () => {
           <div className="cart__summary">
             <h3 className="cart__summary-title"> Итого </h3>
             <p className="cart__total"> { totalPrice }&nbsp;Р </p>
-            <button className="cart__order-button" onClick={handleSubmit}> Заказать </button>
+            <button className="cart__order-button"  onClick={handleSubmit}> Заказать </button>
           </div>
         </div>
 
-        <Modal className="modal-cart"  overlayClassName="modal-cart__overlay"> 
+        <Modal className="modal-cart"  overlayClassName="modal-cart__overlay"  onRequestClose={closeModal}  isOpen={modalIsOpen}> 
             <h2 className="modal-cart__title">
               {orderStatus === 'success' ? `Ваш заказ  ${orderId} успешно оформлен` : 'Произошла ошибка оформления заказа'} 
             </h2>

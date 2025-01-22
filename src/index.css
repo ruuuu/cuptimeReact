@@ -492,6 +492,41 @@ input[type='number']{
     background-color: #f2f9f7;
 }
 
+.modal-cart__overlay{ /* подложка(то что окружает модалку) */
+  position: fixed;
+  top:0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-cart{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* перемещение контентной части */ 
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.modal-cart__title{
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+
+.modal-cart__button{
+  padding: 10px 20px;
+  background-color: #64099b;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 @media(max-width: 1240px){ /* от декстопа уменьшаем */
 
   .container{
@@ -786,7 +821,7 @@ input[type='number']{
     padding: 60px 0;
   }
 
-  products__title{
+  .products__title{
     font-size: 36px;
   }
 
@@ -938,5 +973,7 @@ input[type='number']{
   .footer__contacts{
     order: 1;
   }
+
+  
 
 }
