@@ -17,6 +17,15 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
   const [ products, setProducts ] = useState([]);  // нач значние products=[]
   const [ category, setCategory ] = useState("");  // нач значние category=""
 
+  const categories = {
+    "tea": "Чай",
+    "coffee": "Кофе",
+    "teapots": "Чайники",
+    "cezves": "Турки",
+    "other": "Другое",
+  }
+
+
 
   useEffect(() => {
 
@@ -40,7 +49,7 @@ export const ProductProvider = ({ children }) => { // провайдер кот�
 
 
   return (
-    <ProductContext.Provider  value={{ products, setCategory }}>    {/* отправляем products, setCategory в Provider */}
+    <ProductContext.Provider  value={{ products, setCategory, categories }}>    {/* отправляем products, setCategory в Provider */}
         {children}   {/* children(др комопненты jsx) имеют доступ к products, setCategory  */}
     </ProductContext.Provider>
   )

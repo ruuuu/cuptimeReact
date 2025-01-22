@@ -11,9 +11,9 @@ import { SkeletonLoader } from './SkeletonLoader.jsx';
 export const Products = () => {
 
   const [ searchParams ] = useSearchParams(); // из реакта хук для search-парамтров, нужен только searchParams -объект
-  const category = searchParams.get('category'); // полуичли search-парамер cateogry
+  const category = searchParams.get('category'); // полуичли значение search-парамер cateogry из урла
 
-  const { products, setCategory } = useProducts(); // useProducts этот хук сами создали, он вызовет хук useContext(из productContext.jsx)
+  const { products, setCategory, categories } = useProducts(); // useProducts этот хук сами создали, он вызовет хук useContext(из productContext.jsx)
 
   console.log('products ', products)
 
@@ -22,24 +22,14 @@ export const Products = () => {
   }, [ category, setCategory ]);  // при смене category, вызовется переданный колбэк
 
 
-  const setTitle = (category) => {
-    if(category === 'tea') return 'Чай';
-
-    if(category === 'coffee') return 'Кофе';
-
-    if(category === 'teapots') return 'Чайники';
-
-    if(category === 'cezves') return 'Турки';
-
-    if(category === 'other') return 'Другое';
-  }
+ 
 
   
 
   return (
         <section className="products">
           <div className="container products__container">
-            <h2 className="products__title"> { setTitle(category) } </h2>
+            <h2 className="products__title"> { categories[category] || 'Товары' } </h2>   
 
             <ul className="products__list">
                { products.length ? products.map((item) => { // вернет массив из <Product />

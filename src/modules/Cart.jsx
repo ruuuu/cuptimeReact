@@ -92,7 +92,7 @@ export const Cart = () => {
   return (
       <section className="cart">
         <div className="container cart__container">
-          <h2 className="cart__title"> Корзина ({ cart? cart.length : 0}) </h2>
+          <h2 className="cart__title"> Корзина ({ cart ? cart.length : 0}) </h2>     {/* или колво можно считать так:  cart.reduce((acc, item) => acc + item.quantity, 0)  */}
 
           <ul className="cart__items">
             { cart ? ( cart.map((item) => (                   // вернет [<CartItem />, </CartItem/>]
