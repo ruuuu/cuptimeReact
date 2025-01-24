@@ -10,7 +10,6 @@
 
 html{
   box-sizing: border-box;   /*  наследуется от родиеля(html) */
-  
 }
 
 
@@ -21,6 +20,7 @@ html{
 }
 
 body{
+  min-width: 320px;
   font-family: "Inter", sans-serif; /* если Inter не подгрузится, то загрузится какойнибудь(системный) из семества sans-serif  */
   background-color: #fff;
   font-size: 20px;
@@ -89,12 +89,13 @@ input[type='number']{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 6px;
   backdrop-filter: blur(60px);
   background: rgba(108, 185, 171, 0.7);
 }
 
 
-.header __logo-link {
+.header__logo-link {
   font-size: 0;  /* чтобы  у .svg убрать нижнюю полоску */
 }
 
@@ -129,6 +130,19 @@ input[type='number']{
   padding: 10px 4px 3px; /* чтобы отцентровать цифру */
 }
 
+.header__control{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__close-btn{
+  display: none;  /* откроем тольо на мобилке */
+}
+
+.header__burger{
+  display: none;  /* откроем тольо на мобилке */
+}
 
 .promo{
   background-color: #6cb9ab;
@@ -136,6 +150,7 @@ input[type='number']{
 }
 
 .promo__container {
+  min-height: 600px;
   padding-top: 210px;
   padding-bottom: 80px;
   background-image: url('/img/hero.png');
@@ -525,6 +540,10 @@ input[type='number']{
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.active{
+  display: block;
 }
 
 @media(max-width: 1240px){ /* от декстопа уменьшаем */
