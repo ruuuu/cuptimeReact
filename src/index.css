@@ -144,13 +144,37 @@ input[type='number']{
   display: none;  /* откроем тольо на мобилке */
 }
 
+.header__burger{
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header__nav.active{
+  display: flex; /* чтоб меню открыть */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;    /* 100% высоты экрана */
+  overflow: hidden;  /* чтобы не было скролла */
+  background-color: #6cb9ab;
+}
+
+
 .promo{
   background-color: #6cb9ab;
   color: #fff;
 }
 
 .promo__container {
-  min-height: 600px;
+  
   padding-top: 210px;
   padding-bottom: 80px;
   background-image: url('/img/hero.png');
@@ -197,11 +221,11 @@ input[type='number']{
 }
 
 .product {
-  min-height: 600px;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  /* padding: 24px; */
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;  /* все что не вместится обрежется */
   background-color: #f2f9f7;
   font-size: 0;  /* чтобы убрать нижний оступ у картинки */
   color: #1d1c1d;
@@ -215,17 +239,19 @@ input[type='number']{
   display: flex;
   flex-direction: column;
   flex-grow: 1; /* будет занимтаь все оставшее простанство */ 
+  gap: 24px;
   padding: 40px 24px 24px 24px;
 }
 
 .product__title {
-  flex-grow: 1;     /* будет занимтаь все оставшее простанство */ 
-  margin-bottom: 4px;
+  /* flex-grow: 1;           будет занимтаь все оставшее простанство  */
+  height: 62px;
+  margin-bottom: 0;
   font-size: 24px;
-  overflow: hidden;  /* все что не вместится обрежется */
-  text-overflow: ellipsis; /* многоточия */
+  overflow: hidden;         /* все что не вместится обрежется */
+  text-overflow: ellipsis;    /* многоточия */
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* 2 строки только будут отображаться  */
+  -webkit-line-clamp: 2;    /* 2 строки только будут отображаться  */
   -webkit-box-orient: vertical;
 }
 
@@ -484,13 +510,11 @@ input[type='number']{
   font-size: 20px;
 }
 
-
 .order__payment-label{
   display: block;
   margin-bottom: 8px;
   font-size: 16px;
 }
-
 
 .order__payment-label:last-child{
   margin-bottom: 0;
@@ -562,10 +586,11 @@ input[type='number']{
   }
 
   .promo__container {
-      padding-top: 172px;
-      padding-bottom: 60px;
-      background-position: right 90px bottom 0;
-      background-image: url('/img/hero_tablet.png');
+    min-height: 484px;
+    padding-top: 172px;
+    padding-bottom: 60px;
+    background-position: right 90px bottom 0;
+    background-image: url('/img/hero_tablet.png');
   }
   
   .promo__title {
@@ -575,7 +600,7 @@ input[type='number']{
   }
 
   .product {
-    min-height: 450px;
+    
   }
 
   .cart__container{
@@ -668,6 +693,7 @@ input[type='number']{
   } */
 
   .product__title{
+    height: 48px;
     font-size: 20px;
   }
 
@@ -808,17 +834,29 @@ input[type='number']{
     gap: 16px;
   }
 
-
   .header__nav{
     display: none;
   }
+  
+  .header__menu {
+    display: flex;
+    flex-direction: column;
+  }
 
-  .header__menu{
-     
+  .header__close-btn{ /* кнпка кретсик */
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    display: block;   /* показываем кнопку крестика */ 
+    width: 28px;
+    height: 28px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
 
   .promo__container{
-    min-height: auto;
+    min-height: 420px;
     padding-top: 90px;
     padding-bottom: 250px;
     background-position: center bottom 0;
@@ -856,9 +894,11 @@ input[type='number']{
 
   .product__content{
     padding: 32px 8px 16px;
+
   }
 
   .product__title{
+    height: 40px; /* ограничиваем контент */
     font-size: 16px;
   }
 
@@ -951,7 +991,6 @@ input[type='number']{
     font-size: 20px;
   }
 
-
   .order__payment-label{
     display: block;
     margin-bottom: 8px;
@@ -992,7 +1031,4 @@ input[type='number']{
   .footer__contacts{
     order: 1;
   }
-
-  
-
 }

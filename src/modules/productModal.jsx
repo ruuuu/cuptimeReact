@@ -3,21 +3,23 @@ import Modal from 'react-modal'; // используем готовую мода
 import { API_URL } from '../const.js';
 import { useState } from 'react';
 import { useCart } from '../context/cartContext.jsx';
+import s from './ProductModal.module.css';      /* перменную s придумали сами, компонентный подход, эти стили будут применены тольо к этому компоненту  */
+
 
 
 // компонент
 //  модалка добавления кол-ва товара в Корзину (появляется при нажатии на карточку товара)
 
-const customStyles = { // стили для нашей модалки
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto', // чтобы не переопределялся
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+// const customStyles = { // стили для нашей модалки
+//   content: {
+//     top: '50%',
+//     left: '50%',
+//     right: 'auto', // чтобы не переопределялся
+//     bottom: 'auto',
+//     marginRight: '-50%',
+//     transform: 'translate(-50%, -50%)',
+//   },
+// };
 
 
 Modal.setAppElement('#root') // id=root в index.html (прикрпляем модалку)
@@ -62,32 +64,50 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
 
 
   return ( // модалка при нажатии на картчоку товара
-    <Modal isOpen={isOpen}  onRequestClose={onRequestClose}  style={customStyles}  contentLabel='Product Modal'>   {/* <Modal> </Modal> это компонент реаакта */}
-      
-      <h2> {data.title} </h2>
-      <img src={`${API_URL}${data.img}`} alt={data.title} />
-      <p> {data.price}Р </p>
-       {/* { console.log('data.additional in ProductModal ', data.additional) }  */}
-      <ul>
-        {   
-          // Object.entries(data.additional) делает из объекта  массив [[материал, медь], [объем, 250мл], [производитель, Индия]]
-          Object.entries(data.additional).map(([key, value]) => (   // [key, value] = item деструткрировали, вернет на кажой итераии <li> </li>
-              <li key={key}> 
-                <strong> {key}: </strong> {value}
-              </li>
-            )   
-          )  
-        }
-      </ul>
+    //                                                style={customStyles}
+    <Modal isOpen={isOpen}  onRequestClose={onRequestClose}   className={s.modal}  overlayClassName={s.overlay}  contentLabel={data.title}>   {/* <Modal> </Modal> это компонент реаакта */}
+      <img className={s.image}  src={`${API_URL}${data.img}`} alt={data.title} />
+     
+      <div className={s.content}>
+        <div className={s.header}>
+          <h2 className={s.title}> {data.title} </h2>
+          <p className={s.price}> {data.price}&nbsp;Р </p>
+        </div>
+        
+        {/* { console.log('data.additional in ProductModal ', data.additional) }  */}
+        <ul className={s.list}>
+          {   
+            // Object.entries(data.additional) делает из объекта  массив [[материал, медь], [объем, 250мл], [производитель, Индия]]
+            Object.entries(data.additional).map(([key, value]) => (   // [key, value] = item деструткрировали, вернет на кажой итераии <li> </li>
+                <li className={s.item}  key={key}> 
+                  <span className={s.field}> {key}:</span>   <span className={s.value}> {value} </span>
+                </li>
+              )   
+            )  
+          }
+        </ul>
 
-      <div>
-        <button onClick={handleDecrease}> - </button>
-        <input  type='number'  value={quantity}  readOnly />  {/* readOnly- будем только считывать с это поля(то есть поле это неуправляемое)  */}
-        <button onClick={handleIncrease}> + </button>
+        <div className={s.footer}>
+        <div className={s.count}>
+          <button className={s.btn}  onClick={handleDecrease}> - </button>
+          <input  className={s.number}  type='number'  value={quantity}  readOnly />  {/* readOnly- будем только считывать с это поля(то есть поле это неуправляемое)  */}
+          <button className={s.btn}  onClick={handleIncrease}> + </button>
+        </div>
+
+        <button className={s.btnAddCart} onClick={handleAddToCart}> Добавить </button>
       </div>
-
-      <button onClick={handleAddToCart}> Добавить в корзину </button>
-      <button onClick={onRequestClose}> Закрыть </button>           {/* при нажатии на Закрыть, вызовется onRequestClose() */}
+      </div>
+     
+     
+      
+      
+      <button className={s.btnCloseCard} onClick={onRequestClose}>  {/* при нажатии на Закрыть, вызовется onRequestClose() */}
+          <svg width="20" height="20" viewBox='0 0 20 20' fill="">
+            <rect x="5.71228" y="14.195" width="12" height="1.5" transform="rotate(-45 5.71228 14.1975 )" fill="#B8B8B8" /> 
+            <rect x="14.1976" y="15.2582" width="12" height="1.5" transform="rotate(-135 14.1976 15.2582)" fill="#B8B8B8" /> 
+          </svg>
+      </button>          
     </Modal>
   )
 };
+// 32:42
