@@ -1,6 +1,6 @@
 import { API_URL } from "../const.js";
 import { useState } from "react";
-import { ProductModal } from "./ProductModal.jsx";
+import { ProductModal } from "./ProductModal";
 
 
 // компонент - карточка товара
