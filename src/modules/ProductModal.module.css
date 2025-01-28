@@ -3,23 +3,23 @@
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  overflow-y: auto;
+  overflow-y: auto; /* чтоы скролл был горизонтальный */
 }
 
 .modal {
   max-width: 744px;
   position: relative; /* отноительно этого элемента позиционируем  кнопку крестик */
   width: 100%;
-  margin: auto;
+  margin: auto;           /* .overlay задали display: flex  и чтобы отцентровать делаем margin: auto */
   border-radius: 6px;
-  overflow: hidden;
+  overflow: hidden;       /* чтобы внутри  модалки скролла не было */
   background-color: #f2f9f7;
   display: flex;
 }
 
 .image {
   width: 45%;
-  object-fit: cover;
+  object-fit: cover; /* чтобы не искажалаась */
 }
 
 .content {

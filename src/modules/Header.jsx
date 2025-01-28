@@ -65,7 +65,7 @@ export const Header = () => {
 
           <div class="header__control">
             <Link to="/cart" className="header__cart-link" aria-label="Открыть корзину"> {cart ? cart.length : 0} </Link>  {/*  aria-label добавляем для кнопок у котрых нет надписей(для слепых) */}
-            <button class="header__burger" aria-label="Открыть меню"  onClick={openMenu}>           {/* кнопка Бургер */}
+            <button class="header__burger" aria-label="Открыть меню"  onClick={openMenu}>           {/* кнопка Бургер для мобилки */}
               <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="9.5" width="20" height="1" fill="#D9D9D9"/>
                 <rect x="4" y="14.5" width="20" height="1" fill="#D9D9D9"/>
