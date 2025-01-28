@@ -5,8 +5,10 @@ import { ProductModal } from "./ProductModal.jsx";
 
 // компонент - карточка товара
 
-//                        props
-export const Product  = ({ data }) => { // props = { data: {image, price, title}}, деструктурировали(вытащили data)
+//                        
+// props = { data: {image, price, title}}, деструктурировали(вытащили data)
+//                      props
+export const Product  = ({ data }) => { 
 
   // console.log(props)  
   // завели перем состояния: это внутренее осстяние(используем только в этом компоненте)

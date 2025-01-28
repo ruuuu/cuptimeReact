@@ -94,7 +94,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
               <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" stroke="#B8B8B8"/>
               <rect x="12" y="17" width="12" height="2" fill="#1D1C1D"/>
             </svg>
-           </button>
+          </button>
           <input  className={s.number}  type='number'  value={quantity}  readOnly />  {/* readOnly- будем только считывать с это поля(то есть поле это неуправляемое)  */}
           <button className={s.btn}  onClick={handleIncrease}> 
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
