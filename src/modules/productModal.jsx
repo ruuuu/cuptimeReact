@@ -89,9 +89,20 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
 
         <div className={s.footer}>
         <div className={s.count}>
-          <button className={s.btn}  onClick={handleDecrease}> - </button>
+          <button className={s.btn}  onClick={handleDecrease}> 
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" stroke="#B8B8B8"/>
+              <rect x="12" y="17" width="12" height="2" fill="#1D1C1D"/>
+            </svg>
+           </button>
           <input  className={s.number}  type='number'  value={quantity}  readOnly />  {/* readOnly- будем только считывать с это поля(то есть поле это неуправляемое)  */}
-          <button className={s.btn}  onClick={handleIncrease}> + </button>
+          <button className={s.btn}  onClick={handleIncrease}> 
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" stroke="#B8B8B8"/>
+                <rect x="12" y="17.25" width="12" height="1.5" fill="#1D1C1D"/>
+                <rect x="17.25" y="24" width="12" height="1.5" transform="rotate(-90 17.25 24)" fill="#1D1C1D"/>
+              </svg>
+          </button>
         </div>
 
         <button className={s.btnAddCart} onClick={handleAddToCart}> Добавить </button>
