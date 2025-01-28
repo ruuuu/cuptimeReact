@@ -121,4 +121,3 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => { // onRequest
     </Modal>
   )
 };
-// 32:42
